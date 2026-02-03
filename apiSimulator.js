@@ -48,9 +48,9 @@ export const fetchProductReviews = () => {
           resolve(reviews);
 
         } else {
-            throw new NetworkError{
+            throw new NetworkError(
                     `Failed to fetch reviews for product ID ${productId}`
-            }
+    )
           
         }
       } catch(e) {
