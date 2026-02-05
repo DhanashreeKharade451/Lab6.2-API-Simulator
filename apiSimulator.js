@@ -12,7 +12,7 @@ class DataError extends Error {
   }
 }
 
-export const fetchProductCatalog = () => {
+export const fetchP  roductCatalog = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       try {
@@ -48,8 +48,7 @@ export const fetchProductReviews = () => {
           resolve(reviews);
 
         } else {
-            throw new NetworkError(
-                    `Failed to fetch reviews for product ID ${productId}`
+            throw new NetworkError( `Failed to fetch reviews for product ID ${productId}`
     )
           
         }
@@ -74,34 +73,34 @@ export const fetchSalesReport = () => {
   });
 };
 
-fetchProductCatalog()
-  .then((product) => {
-    console.log("fetched product", product);
-    return fetchProductReviews(); // returns a promise object
-  })
+//  fetchProductCatalog()
+//   .then((product) => {
+//     console.log("fetched product", product);
+//     return fetchProductReviews(); // returns a promise object
+//   })
 
-  .then((reviews) => {
-    console.log("fetched reviews", reviews);
-    return fetchProductReviews(); // returns a promise object
-  })
+//   .then((reviews) => {
+//     console.log("fetched reviews", reviews);
+//     return fetchProductReviews(); // returns a promise object
+//   })
 
-  .then((sales) => {
-    console.log("fetches sales", sales);
-  })
+//   .then((sales) => {
+//     console.log("fetches sales", sales);
+//   })
 
-  .catch((e) => {
-    if(e instanceof DataError){
-         console.error("DataError", e);
-    }else if (e instanceof DataError){
-         console.error("NewworkError", e);
-    }
-    else{
-        console.error(e);
-    }
-  })
+//   .catch((e) => {
+//     if(e instanceof DataError){
+//          console.error("DataError", e);
+//     }else if (e instanceof DataError){
+//          console.error("NewworkError", e);
+//     }
+//     else{
+//         console.error(e);
+//     }
+//   })
 
-  .finally(() => {
-    console.log("API Calls Completed");
-  });
+//   .finally(() => {
+//     console.log("API Calls Completed");
+//   });
 
 fetchProductReviews();
