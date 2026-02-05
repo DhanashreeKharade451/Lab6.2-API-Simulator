@@ -66,55 +66,17 @@ export function fetchProductReviews(id) {
 }
 
 // Fetch Sales Report
-export function fetchSalesReport() {
+export const fetchSalesReport = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // Simulate 90% success rate
-      if (Math.random() < 0.7) {
-        // return sales data
-        resolve({ totalSales: 25000, unitsSold: 50, averagePrice: 500 });
+      const salesReport = { totalSales: 100, unitsSold: 5, averagePrice: 20 };
+
+      if (Math.random() < 0.8) {
+        resolve(salesReport);
       } else {
-        // reject if fetching failed
-        reject(new NetworkError("Failed to fetch sales report"));
+        reject("Failed to fetch Report");
       }
     }, 1000);
   });
-}
+};
 
-
-
-
-
-
-
-//  fetchProductCatalog()
-//   .then((product) => {
-//     console.log("fetched product", product);
-//     return fetchProductReviews(); // returns a promise object
-//   })
-
-//   .then((reviews) => {
-//     console.log("fetched reviews", reviews);
-//     return fetchProductReviews(); // returns a promise object
-//   })
-
-//   .then((sales) => {
-//     console.log("fetches sales", sales);
-//   })
-
-//   .catch((e) => {
-//     if(e instanceof DataError){
-//          console.error("DataError", e);
-//     }else if (e instanceof DataError){
-//          console.error("NewworkError", e);
-//     }
-//     else{
-//         console.error(e);
-//     }
-//   })
-
-//   .finally(() => {
-//     console.log("API Calls Completed");
-//   });
-
-//fetchProductReviews();

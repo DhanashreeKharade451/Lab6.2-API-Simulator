@@ -1,8 +1,12 @@
-import { fetchProductCatalog,
+
+//import functions from apiSimulator
+import {
+  fetchProductCatalog,
   fetchProductReviews,
   fetchSalesReport,
   NetworkError,
-  DataError, } from "./apiSimulator";
+  DataError,
+} from "./apiSimulator.js";
 
  fetchProductCatalog() // returns a promise object
   .then((productCatalog) => {
@@ -58,37 +62,21 @@ import { fetchProductCatalog,
     );
   })
  
-  /////////////
 
-fetchProductCatalog()   // returns a promise object
-  .then((product) => {
-    console.log("fetched product", product);
-    return fetchProductReviews(); // returns a promise object
-  })
-
-  .then((reviews) => {
-    console.log("fetched reviews", reviews);
-    return fetchProductReviews(); // returns a promise object
-  })
-
-  .then((sales) => {
-    console.log("fetches sales", sales);
-  })
-
-  .catch((e) => {
-    if(e instanceof DataError){
-         console.error("DataError", e);
-    }else if (e instanceof DataError){
-         console.error("NewworkError", e);
-    }
-    else{
-        console.error(e);
+  // Handle errors from fetching the catalog
+  .catch((error) => {
+    if (error instanceof NetworkError) {
+      console.log("Network Error", error.message);
+    } else if (error instanceof DataError) {
+      console.log("Data Error", error);
+    } else {
+      console.error("Unknown Error:", error);
     }
   })
-
+  // Always runs at the end
   .finally(() => {
-    console.log("API Calls Completed");
+    console.log("Complete.");
   });
 
+  
 
-fetchProductReviews();
