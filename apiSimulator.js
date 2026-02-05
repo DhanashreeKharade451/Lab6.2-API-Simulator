@@ -13,7 +13,6 @@ export class DataError extends Error {
     this.name = "DataError";
   }
 }
-
 // Fetch Product Catalog
 export function fetchProductCatalog() {
   return new Promise((resolve, reject) => {
@@ -80,3 +79,4 @@ export const fetchSalesReport = () => {
   });
 };
 
+/////////////////////////////////
