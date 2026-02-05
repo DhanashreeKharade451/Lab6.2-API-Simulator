@@ -1,4 +1,3 @@
-
 //import functions from apiSimulator
 import {
   fetchProductCatalog,
@@ -8,7 +7,7 @@ import {
   DataError,
 } from "./apiSimulator.js";
 
- fetchProductCatalog() // returns a promise object
+fetchProductCatalog() // returns a promise object
   .then((productCatalog) => {
     //printing all the products in the catalog
     console.log("Products :", productCatalog);
@@ -61,7 +60,7 @@ import {
         })
     );
   })
- 
+  
 
   // Handle errors from fetching the catalog
   .catch((error) => {
@@ -77,6 +76,3 @@ import {
   .finally(() => {
     console.log("Complete.");
   });
-
-  
-

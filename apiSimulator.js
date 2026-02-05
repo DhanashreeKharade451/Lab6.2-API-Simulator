@@ -34,6 +34,7 @@ export function fetchProductCatalog() {
   });
 }
 
+
 // Fetch Product Reviews
 export function fetchProductReviews(id) {
   return new Promise((resolve, reject) => {
@@ -78,4 +79,3 @@ export const fetchSalesReport = () => {
     }, 1000);
   });
 };
-
