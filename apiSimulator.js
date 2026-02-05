@@ -1,35 +1,39 @@
-class NetworkError extends Error {
+//creating custom class for NetworkError
+export class NetworkError extends Error {
   constructor(message) {
     super(message);
     this.name = "NetworkError";
   }
 }
 
-class DataError extends Error {
+//creating custom class for DataError
+export class DataError extends Error {
   constructor(message) {
     super(message);
     this.name = "DataError";
   }
 }
 
-export const fetchP  roductCatalog = () => {
+// Fetch Product Catalog
+export function fetchProductCatalog() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      try {
-        if (Math.random() < 0.8) {
-          resolve([
-            { id: 1, name: "Laptop", price: 1200 },
-            { id: 2, name: "Headphones", price: 200 },
-          ]);
-        } else {
-          throw new DataError("Failed to fetch product catalog");
-        }
-      } catch (e) {
-        reject(e);
+      // Simulate 80% success rate
+      if (Math.random() < 0.8) {
+        const products = [
+          { id: 1, name: "Laptop", price: 1200 },
+          { id: 2, name: "Headphones", price: 200 },
+          { id: 3, name: "Refridgerator", price: 500 },
+        ];
+        // return products if successful
+        resolve(products);
+      } else {
+        // reject with NetworkError if failed
+        reject(new NetworkError("Failed to fetch product catalog"));
       }
     }, 1000);
   });
-};
+}
 
 export const fetchProductReviews = () => {
   return new Promise((resolve, reject) => {
