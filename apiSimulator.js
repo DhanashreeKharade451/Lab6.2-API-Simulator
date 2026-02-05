@@ -35,47 +35,57 @@ export function fetchProductCatalog() {
   });
 }
 
-export const fetchProductReviews = () => {
+// Fetch Product Reviews
+export function fetchProductReviews(id) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-
-         try {
-      const reviews = [
-        { productId: 1, name: "I love this product", rating: 4 },
-        { productId: 1, name: "not working properly", rating: 2 },
-        { productId: 1, name: "Awesome Product", rating: 5 },
-      ];
-      const productId = reviews[0].productId;
-
-     
-        if (Math.random() < 0.8) {
-          resolve(reviews);
-
-        } else {
-            throw new NetworkError( `Failed to fetch reviews for product ID ${productId}`
-    )
-          
-        }
-      } catch(e) {
-        reject(e);
+      // Check for invalid product ID
+      if (!id) {
+        reject(new DataError("Invalid product ID"));
+        return;
+      }
+      // Simulate 80% success rate
+      if (Math.random() < 0.6) {
+        const reviews = [
+          { productId: 1, rating: 5, content: "It was a nice Laptop!" },
+          { productId: 1, rating: 3, content: "Bad Laptop! Broke!" },
+          { productId: 2, rating: 7, content: "Great Headphones!" },
+          { productId: 2, rating: 5, content: "Good and working Headphones!" },
+          { productId: 3, rating: 3, content: "Bad Refrigerator! Broke!" },
+          { productId: 3, rating: 6, content: "Great Refrigerator!" },
+        ].filter((item) => item.productId === id); // return only reviews for the requested product
+        // return filtered reviews
+        resolve(reviews);
+      } else {
+        reject(
+          new NetworkError(`Failed to fetch reviews for product ID ${id}`),
+        );
       }
     }, 1500);
   });
-};
+}
 
-export const fetchSalesReport = () => {
+// Fetch Sales Report
+export function fetchSalesReport() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const salesReport = { totalSales: 100, unitsSold: 5, averagePrice: 20 };
-
-      if (Math.random() < 0.8) {
-        resolve(salesReport);
+      // Simulate 90% success rate
+      if (Math.random() < 0.7) {
+        // return sales data
+        resolve({ totalSales: 25000, unitsSold: 50, averagePrice: 500 });
       } else {
-        reject("Failed to fetch Report");
+        // reject if fetching failed
+        reject(new NetworkError("Failed to fetch sales report"));
       }
     }, 1000);
   });
-};
+}
+
+
+
+
+
+
 
 //  fetchProductCatalog()
 //   .then((product) => {
@@ -107,4 +117,4 @@ export const fetchSalesReport = () => {
 //     console.log("API Calls Completed");
 //   });
 
-fetchProductReviews();
+//fetchProductReviews();
